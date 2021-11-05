@@ -5,7 +5,10 @@
             <div>
                 {!! $post->excerpt !!}
             </div>
-            <p><a href="/category/{{$post->category->name}}">{{$post->category->name}}</a></p>
+            <p>
+                By <a href="/authors/{{$post->author->username}}">{{$post->author->name}}</a> in
+                <a href="/category/{{$post->category->slug}}">{{$post->category->name}}</a>
+            </p>
         </article>
     @endforeach
 </x-layout>

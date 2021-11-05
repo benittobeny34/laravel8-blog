@@ -7,8 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Posts</title>
     <link rel="stylesheet" href="/app.css">
-    <link rel="stylesheet" href="/app.js">
-{{--    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">--}}
+{{--    <link href="https://unpkg.com/tailcwindcss@^2/dist/tailwind.min.css" rel="stylesheet">--}}
 </head>
 
 <body>
