@@ -12,6 +12,13 @@ class Post extends Model
     protected $fillable = ['title', 'excerpt', 'body', 'slug', 'category_id', 'user_id'];
     protected $with = ['category', 'author'];
 
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? false, fn($query, $search) =>
+            $query->where('title', 'like', '%' . request('search') . '%')
+                ->orWhere('body', 'like', '%' . request('search') . '%'));
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');
@@ -21,4 +28,5 @@ class Post extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
 }

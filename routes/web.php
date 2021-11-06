@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -14,20 +15,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    $posts = Post::latest()->get();
-    return view('posts', [
-        'posts' => $posts,
-        'categories' => \App\Models\Category::all()
-    ]);
-})->name('home');
+Route::get('/', [PostController::class, "index"])->name('home');
 
-Route::get('posts/{post:slug}', function (Post $post) {
-    return view('post', [
-        'post' => $post,
-        'categories' => \App\Models\Category::all()
-    ]);
-})->name('post');
+Route::get('posts/{post:slug}', [PostController::class, "show"])->name('post');
 
 Route::get('categories/{category:slug}', function (\App\Models\Category $category) {
     return view('posts', [
