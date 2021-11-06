@@ -17,24 +17,29 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     $posts = Post::latest()->get();
     return view('posts', [
-        'posts' => $posts
+        'posts' => $posts,
+        'categories' => \App\Models\Category::all()
     ]);
-});
+})->name('home');
 
 Route::get('posts/{post:slug}', function (Post $post) {
     return view('post', [
-        'post' => $post
+        'post' => $post,
+        'categories' => \App\Models\Category::all()
     ]);
-});
+})->name('post');
 
-Route::get('category/{category:slug}', function (\App\Models\Category $category) {
+Route::get('categories/{category:slug}', function (\App\Models\Category $category) {
     return view('posts', [
-        'posts' => $category->posts
+        'posts' => $category->posts,
+        'categories' => \App\Models\Category::all(),
+        'currentCategory' => $category,
     ]);
-});
+})->name('category');
 
 Route::get('authors/{user:username}', function (User $user) {
     return view('posts', [
-        'posts' => $user->posts
+        'posts' => $user->posts,
+        'categories' => \App\Models\Category::all(),
     ]);
 });
